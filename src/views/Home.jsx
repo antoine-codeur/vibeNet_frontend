@@ -1,9 +1,10 @@
-import React from 'react';
+import RecentBlogs from '../components/RecentBlogs';
 
 const Home = () => {
   return (
     <div>
-      <h1>Welcome to the Home Page</h1>
+      <h1>Welcome to the Blog</h1>
+      <RecentBlogs limit={3} />
     </div>
   );
 };

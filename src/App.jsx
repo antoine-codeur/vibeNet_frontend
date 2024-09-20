@@ -7,6 +7,7 @@ import Home from './views/Home';
 import { AuthProvider } from './context/AuthContext';
 import Profile from './views/auth/Profile/Profile';
 import PrivateRoute from './routes/PrivateRoute';
+import Explore from './views/Explore';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+            <Route path="/explore" element={<Explore />} />
           </Routes>
           <Footer />
         </>
