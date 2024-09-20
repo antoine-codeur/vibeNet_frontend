@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate(); // Initialisation de useNavigate
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
@@ -28,8 +30,8 @@ const Login = () => {
       setErrors({ email: [data.data.error] });
     } else {
       setSuccessMessage(data.message);
-      login(data.data.token); // Appelle la fonction de connexion
-      // Redirige ou fais d'autres actions après connexion
+      login(data.data.token);
+      navigate('/'); // Redirection vers la page d'accueil
     }
   };
 

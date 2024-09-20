@@ -5,10 +5,8 @@ import Login from './views/auth/Login';
 import Register from './views/auth/Register';
 import Home from './views/Home';
 import { AuthProvider } from './context/AuthContext';
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import Profile from './views/auth/Profile/Profile';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
   return (
@@ -16,13 +14,12 @@ function App() {
       <Router>
         <>
           <Header />
-        
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
           </Routes>
-
           <Footer />
         </>
       </Router>

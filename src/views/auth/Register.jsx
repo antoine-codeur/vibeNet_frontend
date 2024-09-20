@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate(); // Initialisation de useNavigate
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,7 +32,8 @@ const Register = () => {
       setErrors(data.data);
     } else {
       setSuccessMessage(data.message);
-      login(data.data.token); // Appelle la fonction de connexion
+      login(data.data.token);
+      navigate('/'); // Redirection vers la page d'accueil
     }
   };
 
