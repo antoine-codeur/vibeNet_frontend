@@ -1,0 +1,27 @@
+.blog-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .blog-owner,
+  .blog-image,
+  .blog-logo,
+  .blog-no-logo {
+    margin-top: 20px;
+  }
+  
+  .owner-profile-picture,
+  .blog-main-image,
+  .blog-logo-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .default-icon {
+    font-size: 80px;
+    color: #bbb;
+  }
+  

@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import 'font-awesome/css/font-awesome.min.css';
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('body')).render(
   <StrictMode>
     <App />
   </StrictMode>,

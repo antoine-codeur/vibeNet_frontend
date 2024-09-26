@@ -1,0 +1,74 @@
+.BlogWrapperContainer{
+    --PaddingBlogWrapperContainer: 8px;
+    --iconSizeBlogWrapperContainer: 48px;
+    --logoSizeBlogWrapperContainer: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    
+    height: 100vh;
+    overflow-y: scroll;
+
+    padding: var(--PaddingBlogWrapperContainer);
+    gap: var(--PaddingBlogWrapperContainer);
+    min-width: calc(var(--iconSizeBlogWrapperContainer) + 2*var(--PaddingBlogWrapperContainer));
+
+    background-color: #1C1B1F;
+}
+.vibenet_logo{
+    fill: #ffffff;
+}
+.BlogWrapper,
+.logo,
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--iconSizeBlogWrapperContainer);
+    min-width: var(--iconSizeBlogWrapperContainer);
+    overflow: hidden;
+    
+    font-size: 2rem;
+    border-radius: var(--iconSizeBlogWrapperContainer);
+    background-size: cover;
+    background-position: center;
+    
+    transition: all 0.2s ease;
+}
+.BlogWrapper,
+.loading{
+    background-color: #262529;
+}
+.logo{
+    background-color: #3d18ae;
+}
+.logo svg{
+    height: var(--logoSizeBlogWrapperContainer);
+    width: var(--logoSizeBlogWrapperContainer);
+}
+.BlogWrapper:hover,
+.logo:hover,
+.loading:hover{
+    border-radius: 1rem;
+    cursor: pointer;
+}
+/* Loading spinner style */
+.loading{
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading i{
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

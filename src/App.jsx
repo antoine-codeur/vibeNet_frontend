@@ -5,26 +5,23 @@ import Login from './views/auth/Login';
 import Register from './views/auth/Register';
 import Home from './views/Home';
 import { AuthProvider } from './context/AuthContext';
+import { UserProvider } from './context/UserContext';
 import Profile from './views/auth/Profile/Profile';
 import PrivateRoute from './routes/PrivateRoute';
 import Explore from './views/Explore';
+import Blog from './views/Blog/Blog';
+import MainLayout from './MainLayout.jsx';
+import InfoWrapper from './components/deepPage/infoWrapper/infoWrapper';
+import BlogWrapper from './components/BlogWrapper/BlogWrapper.jsx';
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
-            <Route path="/explore" element={<Explore />} />
-          </Routes>
-          <Footer />
-        </>
-      </Router>
+      <UserProvider>
+        <Router>
+          <MainLayout />
+        </Router>
+      </UserProvider>
     </AuthProvider>
   );
 }

@@ -6,8 +6,7 @@ const Header = () => {
   const { isAuthenticated, logout } = useContext(AuthContext);
 
   const handleLogout = () => {
-    logout(); // Appelle la fonction de déconnexion
-    window.location.reload(); // Recharge la page (ou utilise navigate)
+    logout(); // Log the user out
   };
 
   return (

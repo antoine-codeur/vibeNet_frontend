@@ -1,0 +1,18 @@
+.infoWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    min-width: 275px;
+    max-width: 275px;
+    height: 100vh;
+    overflow-y: scroll;
+    position: relative;
+
+    background-color: #262529;
+}
+.infoWrapper p{
+    padding: 8px;
+}
