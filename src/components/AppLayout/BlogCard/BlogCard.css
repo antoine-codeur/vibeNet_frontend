@@ -1,0 +1,33 @@
+.blog-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .blog-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 16px;
+  }
+  
+  .blog-info {
+    flex-grow: 1;
+  }
+  
+  .blog-owner {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+  }
+  
+  .owner-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  

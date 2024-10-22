@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './WrapperInfo.css';
-import ProfileCard from './ProfileCard/ProfileCard';  // Import ProfileCard
+import ProfileCard from './ProfileCard/ProfileCard';
+import BlogDetail from './BlogDetail/BlogDetail';
 import apiFetch from '../../../utils/apiFetch';
+import { useLocation } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthContext'; // Get the Auth context
 
 const WrapperInfo = () => {
   const [profileData, setProfileData] = useState(null);
+  const { isAuthenticated } = useContext(AuthContext); // Check if the user is authenticated
+  const location = useLocation();
 
   useEffect(() => {
+    if (!isAuthenticated) return; // Don't fetch if the user is not logged in
+
     const fetchProfile = async () => {
       const response = await apiFetch('/profile', 'GET');
       if (response.success) {
@@ -17,13 +24,13 @@ const WrapperInfo = () => {
     };
 
     fetchProfile();
-  }, []);
+  }, [isAuthenticated]); // Only fetch profile if authenticated
+
+  const isBlogPage = location.pathname.includes('/blogs/');
 
   return (
     <div className="wrapperInfo">
-      <h1>Welcome to Mon Application!</h1>
       {profileData ? (
-        // Pass the profile data as props to ProfileCard
         <ProfileCard
           image={`${import.meta.env.VITE_BACKEND_URL_UPLOAD}/${profileData.profile_picture}`}
           name={profileData.name}
@@ -32,6 +39,8 @@ const WrapperInfo = () => {
       ) : (
         <p>Loading profile...</p>
       )}
+
+      {isBlogPage && <BlogDetail />} 
     </div>
   );
 };

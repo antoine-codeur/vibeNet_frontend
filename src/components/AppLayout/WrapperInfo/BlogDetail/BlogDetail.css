@@ -1,0 +1,18 @@
+.blogDetail{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+.Hero{
+    display: flex;
+    position: relative;
+}
+.Hero h2{
+    position: absolute;
+}
+.Hero img{
+    width: 100%;
+    height: auto;
+    max-height: 30vh;
+}

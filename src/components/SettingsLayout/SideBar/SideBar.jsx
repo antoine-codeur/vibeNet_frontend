@@ -24,9 +24,16 @@ const SideBar = () => {
         </li>
         <li>
           <NavLink 
-            to="/settings/blog" 
+            to="/settings/blog/update" 
             className={({ isActive }) => (isActive ? 'active' : '')}>
-            Blog
+            Update Blog
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
+            to="/settings/blog/create" 
+            className={({ isActive }) => (isActive ? 'active' : '')}>
+            Create Blog
           </NavLink>
         </li>
         </ul>

@@ -1,0 +1,29 @@
+.blogPage{
+  max-height: 90%;
+  overflow-y: scroll;
+}
+.blog-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.blog-owner {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.blog-posts {
+  margin-top: 40px;
+}
+
+.blog-post {
+  margin-bottom: 20px;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+  

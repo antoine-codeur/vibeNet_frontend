@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../../../context/AuthContext';
 import apiFetch from '../../../../utils/apiFetch';
 import './Profile.css';
+import PenIcon from '../../../../assets/icons/Pen.svg';
 
 const Profile = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -107,7 +108,9 @@ const Profile = () => {
               required
             />
           ) : (
-            <span>{userData.name} <i className="fa fa-pencil" onClick={() => toggleEdit('name')}></i></span>
+            <span>{userData.name} 
+              <img src={PenIcon} alt="Edit" onClick={() => toggleEdit('name')} style={{ cursor: 'pointer', width: '16px', height: '16px' }} />
+            </span>
           )}
         </div>
         <div>
@@ -121,7 +124,9 @@ const Profile = () => {
               required
             />
           ) : (
-            <span>{userData.email} <i className="fa fa-pencil" onClick={() => toggleEdit('email')}></i></span>
+            <span>{userData.email} 
+              <img src={PenIcon} alt="Edit" onClick={() => toggleEdit('email')} style={{ cursor: 'pointer', width: '16px', height: '16px' }} />
+            </span>
           )}
         </div>
         <div>
@@ -134,7 +139,9 @@ const Profile = () => {
               onChange={handleChange}
             />
           ) : (
-            <span>******** <i className="fa fa-pencil" onClick={() => toggleEdit('password')}></i></span>
+            <span>******** 
+              <img src={PenIcon} alt="Edit" onClick={() => toggleEdit('password')} style={{ cursor: 'pointer', width: '16px', height: '16px' }} />
+            </span>
           )}
         </div>
         <div>
@@ -146,7 +153,9 @@ const Profile = () => {
               onChange={handleChange}
             />
           ) : (
-            <span>{userData.bio} <i className="fa fa-pencil" onClick={() => toggleEdit('bio')}></i></span>
+            <span>{userData.bio} 
+              <img src={PenIcon} alt="Edit" onClick={() => toggleEdit('bio')} style={{ cursor: 'pointer', width: '16px', height: '16px' }} />
+            </span>
           )}
         </div>
         <div className="profile-picture-container">
@@ -167,7 +176,7 @@ const Profile = () => {
               onChange={handleChange}
               style={{ display: 'none' }}
             />
-            {isUploading && <i className="fa fa-pencil edit-icon"></i>}
+            {isUploading && <img src={PenIcon} alt="Edit" className="edit-icon" />}
           </div>
         </div>
         <button type="submit">Update Profile</button>

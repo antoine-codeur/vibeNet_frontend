@@ -12,6 +12,9 @@
 .settingsBG2{
     width: 100%;
 }
+.settingsBG2 img{
+    width: 50px;
+}
 .settingsBG2, .settingsBG3{
     background: #343337;
     padding: 60px 10px 0 10px;

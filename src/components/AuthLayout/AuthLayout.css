@@ -30,18 +30,11 @@ form{
     border: 3px solid #FFF;
     background: rgba(130, 130, 130, 0.64);
 }
-form input{
+input{
     width: 250px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-}
-form button{
-    padding: 10px 20px;
-    border-radius: 50px;
-    background: #007bff;
-    color: #fff;
-    cursor: pointer;
 }
 .bodyAuth a{
     color: #007bff;

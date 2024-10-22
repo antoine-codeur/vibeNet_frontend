@@ -20,3 +20,29 @@ h2{
 h1,h2,h3,h4,h5{
     font-family: "Lilita One";
 }
+button{
+    padding: 10px 20px;
+    border-radius: 50px;
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+input, textarea{
+    width: 250px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.closeIcon,
+.settingsIcon{
+    border-radius: 50px;
+    cursor: pointer;
+    border: 1px solid white;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon{
+    fill: white;
+}

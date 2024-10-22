@@ -1,5 +1,12 @@
 .bodyApp{
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
     background: #6F6B7C;
+}
+
+.height100{
+    display: flex;
+    max-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import './AppLayout.css';
-import Header from './Header';
 import WrapperInfo from './WrapperInfo/WrapperInfo';
+import SubscribedBlogs from './SubscribedBlogs/SubscribedBlogs';
 
 const AppLayout = ({ children }) => {
   return (
     <div className='bodyApp'>
-      <Header />
+      <SubscribedBlogs />
       <WrapperInfo />
-      <main>
+      <main className='height100'>
         {children}
       </main>
     </div>
