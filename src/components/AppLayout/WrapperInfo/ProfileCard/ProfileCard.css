@@ -1,0 +1,33 @@
+.profile-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #1C1B1F;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-height: 90px;
+}
+.profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+.profile-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}  
+.profile-bio {
+    color: #BEBEBE;
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} 

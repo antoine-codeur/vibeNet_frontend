@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '../../../context/AuthContext';
+import { AuthContext } from '../../../../context/AuthContext';
+import apiFetch from '../../../../utils/apiFetch';
 import './Profile.css';
+import PenIcon from '../../../../assets/icons/Pen.svg';
 
 const Profile = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -27,17 +29,10 @@ const Profile = () => {
     if (!isAuthenticated) return;
 
     const fetchProfile = async () => {
-      const token = localStorage.getItem('token');
-      const response = await fetch('http://127.0.0.1:8000/api/v1/profile', {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
+      const response = await apiFetch('/profile', 'GET');
 
-      const data = await response.json();
-      if (response.ok) {
+      if (response.success) {
+        const data = response.data;
         setUserData(data);
         setFormData({
           name: data.name,
@@ -46,9 +41,9 @@ const Profile = () => {
           bio: data.bio || '',
           profile_picture: null,
         });
-        setTempProfilePicture(null); // Reset temporaire
+        setTempProfilePicture(null);
       } else {
-        setErrors(data.data);
+        setErrors(response.data || {});
       }
     };
 
@@ -59,7 +54,7 @@ const Profile = () => {
     const { name, value, type, files } = e.target;
     if (type === 'file') {
       setFormData({ ...formData, [name]: files[0] });
-      setTempProfilePicture(URL.createObjectURL(files[0])); // Crée une URL temporaire
+      setTempProfilePicture(URL.createObjectURL(files[0]));
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -74,7 +69,6 @@ const Profile = () => {
     setErrors({});
     setMessage('');
 
-    const token = localStorage.getItem('token');
     const formDataToSend = new FormData();
     Object.keys(formData).forEach((key) => {
       if (formData[key]) {
@@ -82,22 +76,15 @@ const Profile = () => {
       }
     });
 
-    const response = await fetch('http://127.0.0.1:8000/api/v1/profile', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-      body: formDataToSend,
-    });
+    const response = await apiFetch('/profile', 'POST', formDataToSend, true);
 
-    const data = await response.json();
-    if (!response.ok) {
-      setErrors(data.data);
-    } else {
-      setMessage(data.message);
-      setUserData(data);
+    if (response.success) {
+      setMessage('Profile updated successfully');
+      setUserData(response.data);
       setEditableFields({ name: false, email: false, password: false, bio: false });
-      setTempProfilePicture(null); // Réinitialise l'image temporaire
+      setTempProfilePicture(null);
+    } else {
+      setErrors(response.data || {});
     }
   };
 
@@ -121,7 +108,9 @@ const Profile = () => {
               required
             />
           ) : (
-            <span>{userData.name} <i className="fa fa-pencil" onClick={() => toggleEdit('name')}></i></span>
+            <span>{userData.name} 
+              <img src={PenIcon} alt="Edit" onClick={() => toggleEdit('name')} style={{ cursor: 'pointer', width: '16px', height: '16px' }} />
+            </span>
           )}
         </div>
         <div>
@@ -135,7 +124,9 @@ const Profile = () => {
               required
             />
           ) : (
-            <span>{userData.email} <i className="fa fa-pencil" onClick={() => toggleEdit('email')}></i></span>
+            <span>{userData.email} 
+              <img src={PenIcon} alt="Edit" onClick={() => toggleEdit('email')} style={{ cursor: 'pointer', width: '16px', height: '16px' }} />
+            </span>
           )}
         </div>
         <div>
@@ -148,7 +139,9 @@ const Profile = () => {
               onChange={handleChange}
             />
           ) : (
-            <span>******** <i className="fa fa-pencil" onClick={() => toggleEdit('password')}></i></span>
+            <span>******** 
+              <img src={PenIcon} alt="Edit" onClick={() => toggleEdit('password')} style={{ cursor: 'pointer', width: '16px', height: '16px' }} />
+            </span>
           )}
         </div>
         <div>
@@ -160,14 +153,16 @@ const Profile = () => {
               onChange={handleChange}
             />
           ) : (
-            <span>{userData.bio} <i className="fa fa-pencil" onClick={() => toggleEdit('bio')}></i></span>
+            <span>{userData.bio} 
+              <img src={PenIcon} alt="Edit" onClick={() => toggleEdit('bio')} style={{ cursor: 'pointer', width: '16px', height: '16px' }} />
+            </span>
           )}
         </div>
         <div className="profile-picture-container">
           <label>Profile Picture:</label>
           <div className="profile-picture-wrapper">
             <img
-              src={tempProfilePicture || `http://127.0.0.1:8000/storage/${userData.profile_picture}`}
+              src={tempProfilePicture || `${import.meta.env.VITE_BACKEND_URL_UPLOAD}/${userData.profile_picture}`}
               alt="Profile"
               className={`profile-picture ${isUploading ? 'uploading' : ''}`}
               onMouseEnter={() => setIsUploading(true)}
@@ -181,7 +176,7 @@ const Profile = () => {
               onChange={handleChange}
               style={{ display: 'none' }}
             />
-            {isUploading && <i className="fa fa-pencil edit-icon"></i>}
+            {isUploading && <img src={PenIcon} alt="Edit" className="edit-icon" />}
           </div>
         </div>
         <button type="submit">Update Profile</button>

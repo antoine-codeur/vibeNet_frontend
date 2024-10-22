@@ -1,0 +1,28 @@
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+h3{
+    font-size: 12px;
+    line-height: 1.3333333333333333;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}
+li{
+    line-height: 2;
+}
+a{
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+a:hover, a:active{
+    background-color: #55535B;
+} 
+a.active{
+    background-color: #6F6B7C;
+}

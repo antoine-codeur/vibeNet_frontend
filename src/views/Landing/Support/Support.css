@@ -1,0 +1,25 @@
+.faq-item h3 {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #323232;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .faq-item h3:hover {
+    background-color: #000000;
+  }
+  
+  .faq-item p {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+  }
+  
+  .faq-item.expanded p {
+    max-height: 100px; /* You can adjust this height based on the content */
+    opacity: 1;
+  }
+  
