@@ -5,7 +5,7 @@
     background-blend-mode: color-dodge;
     min-height: 100vh;
 }
-header{
+.bodyLanding header{
     display: flex;
     padding: 0px 15vw;
     justify-content: space-between;
@@ -14,17 +14,17 @@ header{
 
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.00) 100%);
 }
-header .logoContainer{
+.bodyLanding header .logoContainer{
     display: flex;
     padding: 10px;
     align-items: center;
     gap: 10px;
 }
-header .logo{
+.bodyLanding header .logo{
     height: 50px;
     filter: brightness(0) invert(1);
 }
-header .logoContainer a{
+.bodyLanding header .logoContainer a{
     color: #FFF;
     font-family: "Noto Sans";
     font-size: 2rem;
@@ -34,14 +34,14 @@ header .logoContainer a{
 
     text-decoration: none;
 }
-header nav{
+.bodyLanding header nav{
     display: flex;
     padding: 10px;
     justify-content: center;
     align-items: center;
     gap: 40px;
 }
-header nav a{
+.bodyLanding header nav a{
     color: #FFF;
     font-family: "Noto Sans";
     font-size: 1.5rem;
@@ -64,7 +64,7 @@ header nav a{
     border-radius: 50px;
     background: #FFF;
 }
-main{
+.bodyLanding main{
     display: flex;
     max-width: 1280px;
     padding: 10px 140px;
@@ -75,7 +75,7 @@ main{
 
     color: white;
 }
-section{
+.bodyLanding section{
     display: flex;
     padding: 50px 30px;
     flex-wrap: wrap;

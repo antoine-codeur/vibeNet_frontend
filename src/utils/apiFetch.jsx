@@ -1,13 +1,17 @@
-const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000/api/v1'; // fallback
+const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000/api/v1';
+const backendUrlUpload = import.meta.env.VITE_BACKEND_URL_UPLOAD || 'http://localhost:8000';
 
-const apiFetch = async (endpoint, method = 'GET', data = null) => {
-  const token = localStorage.getItem('token');  // Get the token from localStorage
+const apiFetch = async (endpoint, method = 'GET', data = null, isFormData = false) => {
+  const token = localStorage.getItem('token');
   const headers = {
-    'Content-Type': 'application/json',
     'Accept': 'application/json',
   };
 
-  // Add the token to headers if it exists
+  // Only add 'Content-Type' if not uploading files
+  if (!isFormData) {
+    headers['Content-Type'] = 'application/json';
+  }
+
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
@@ -18,7 +22,7 @@ const apiFetch = async (endpoint, method = 'GET', data = null) => {
   };
 
   if (data) {
-    options.body = JSON.stringify(data);
+    options.body = isFormData ? data : JSON.stringify(data);
   }
 
   try {

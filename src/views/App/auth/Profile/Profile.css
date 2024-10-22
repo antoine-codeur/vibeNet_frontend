@@ -1,31 +1,30 @@
 .profile-picture-container {
-    margin-top: 1rem;
-  }
-  
-  .profile-picture-wrapper {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .profile-picture {
-    width: 150px; /* Ajuste la taille comme nécessaire */
-    height: 150px; /* Ajuste la taille comme nécessaire */
-    border-radius: 50%; /* Arrondir l'image */
-    object-fit: cover; /* Ajuster l'image dans le cadre */
-    transition: filter 0.3s ease;
-  }
-  
-  .profile-picture.uploading {
-    filter: brightness(0.7); /* Assombrir l'image lorsque l'icône est visible */
-  }
-  
-  .edit-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white; /* Couleur de l'icône */
-    font-size: 24px; /* Ajuste la taille de l'icône */
-    pointer-events: none; /* Ne pas interférer avec le clic */
-  }
-  
+  margin-top: 1rem;
+}
+
+.profile-picture-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-picture {
+  width: 150px; /* Ajuste la taille comme nécessaire */
+  height: 150px; /* Ajuste la taille comme nécessaire */
+  border-radius: 50%; /* Arrondir l'image */
+  object-fit: cover; /* Ajuster l'image dans le cadre */
+  transition: filter 0.3s ease;
+}
+
+.profile-picture.uploading {
+  filter: brightness(0.7); /* Assombrir l'image lorsque l'icône est visible */
+}
+
+.edit-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* Couleur de l'icône */
+  font-size: 24px; /* Ajuste la taille de l'icône */
+  pointer-events: none; /* Ne pas interférer avec le clic */
+}

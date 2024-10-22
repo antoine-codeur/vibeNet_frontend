@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../../../context/AuthContext';
+import apiFetch from '../../../../utils/apiFetch';
 import './Profile.css';
 
 const Profile = () => {
@@ -27,17 +28,10 @@ const Profile = () => {
     if (!isAuthenticated) return;
 
     const fetchProfile = async () => {
-      const token = localStorage.getItem('token');
-      const response = await fetch('http://127.0.0.1:8000/api/v1/profile', {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
+      const response = await apiFetch('/profile', 'GET');
 
-      const data = await response.json();
-      if (response.ok) {
+      if (response.success) {
+        const data = response.data;
         setUserData(data);
         setFormData({
           name: data.name,
@@ -46,9 +40,9 @@ const Profile = () => {
           bio: data.bio || '',
           profile_picture: null,
         });
-        setTempProfilePicture(null); // Reset temporaire
+        setTempProfilePicture(null);
       } else {
-        setErrors(data.data);
+        setErrors(response.data || {});
       }
     };
 
@@ -59,7 +53,7 @@ const Profile = () => {
     const { name, value, type, files } = e.target;
     if (type === 'file') {
       setFormData({ ...formData, [name]: files[0] });
-      setTempProfilePicture(URL.createObjectURL(files[0])); // Crée une URL temporaire
+      setTempProfilePicture(URL.createObjectURL(files[0]));
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -74,7 +68,6 @@ const Profile = () => {
     setErrors({});
     setMessage('');
 
-    const token = localStorage.getItem('token');
     const formDataToSend = new FormData();
     Object.keys(formData).forEach((key) => {
       if (formData[key]) {
@@ -82,22 +75,15 @@ const Profile = () => {
       }
     });
 
-    const response = await fetch('http://127.0.0.1:8000/api/v1/profile', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-      body: formDataToSend,
-    });
+    const response = await apiFetch('/profile', 'POST', formDataToSend, true);
 
-    const data = await response.json();
-    if (!response.ok) {
-      setErrors(data.data);
-    } else {
-      setMessage(data.message);
-      setUserData(data);
+    if (response.success) {
+      setMessage('Profile updated successfully');
+      setUserData(response.data);
       setEditableFields({ name: false, email: false, password: false, bio: false });
-      setTempProfilePicture(null); // Réinitialise l'image temporaire
+      setTempProfilePicture(null);
+    } else {
+      setErrors(response.data || {});
     }
   };
 
@@ -167,7 +153,7 @@ const Profile = () => {
           <label>Profile Picture:</label>
           <div className="profile-picture-wrapper">
             <img
-              src={tempProfilePicture || `http://127.0.0.1:8000/storage/${userData.profile_picture}`}
+              src={tempProfilePicture || `${import.meta.env.VITE_BACKEND_URL_UPLOAD}/${userData.profile_picture}`}
               alt="Profile"
               className={`profile-picture ${isUploading ? 'uploading' : ''}`}
               onMouseEnter={() => setIsUploading(true)}

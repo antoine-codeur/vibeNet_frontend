@@ -1,0 +1,18 @@
+.bodySettings{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+}
+.settingsBG1{
+    padding: 60px 10px 60px 100px;
+    min-width: 250px;
+    overflow-y: scroll;
+}
+.settingsBG2{
+    width: 100%;
+}
+.settingsBG2, .settingsBG3{
+    background: #343337;
+    padding: 60px 10px 0 10px;
+}

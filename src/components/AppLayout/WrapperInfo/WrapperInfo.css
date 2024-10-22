@@ -1,0 +1,10 @@
+.wrapperInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: #343337;
+    max-width: 250px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}

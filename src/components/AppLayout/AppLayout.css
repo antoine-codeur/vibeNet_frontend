@@ -1,0 +1,5 @@
+.bodyApp{
+    display: flex;
+    min-height: 100vh;
+    background: #6F6B7C;
+}
