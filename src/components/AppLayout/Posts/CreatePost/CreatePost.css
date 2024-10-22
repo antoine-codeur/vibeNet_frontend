@@ -1,7 +1,8 @@
-.createPost{
+.createPost {
   max-height: 10%;
 }
-.createPost form{
+
+.createPost form {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12,44 +13,43 @@
   background: #1C1B1F;
 }
 
-.createPost textarea{
+.createPost textarea {
   display: flex;
   padding: 4px 12px;
   align-items: center;
   gap: 10px;
   align-self: stretch;
   width: 100%;
+  background-color: #282828;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  resize: none;
 }
-  
-  input[type="file"] {
-    padding: 5px;
-    font-size: 12px; /* Reduce font size */
-    background-color: #282828;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .success-message {
-    color: green;
-  }
-  
-  .error-message {
-    color: red;
-  }
-  
-  .submit-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .submit-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
+
+.icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.success-message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}
+
+.icon.paperclip-icon {
+  margin-right: 10px;
+}

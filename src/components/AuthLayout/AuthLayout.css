@@ -2,6 +2,7 @@
     background: url('./../../assets/backgroundAuth.webp') rgba(0, 0, 0, 0.7) 0% 0% / cover no-repeat;
     background-blend-mode: color-dodge;
     min-height: 100vh;
+    min-width: 100vw;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -48,4 +49,21 @@ input{
 .bodyAuth a:hover{
     color: #000;
     background-color: #007bff;
+}
+
+/* Responsive adjustments for screens below 800px */
+@media (max-width: 800px) {
+    .bodyAuth main {
+        padding: 10px 20px; /* Reduce padding for smaller screens */
+    }
+
+    form {
+        padding: 20px 15px; /* Reduce padding inside the form */
+    }
+
+    input {
+        width: 100%; /* Make input take full width of its container */
+        max-width: 300px; /* Limit maximum width */
+        padding: 8px; /* Slightly reduce padding */
+    }
 }

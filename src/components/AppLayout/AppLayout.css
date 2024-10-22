@@ -1,10 +1,11 @@
-.bodyApp{
+.bodyApp {
     display: flex;
     height: 100vh;
     background: #6F6B7C;
+    position: relative;
 }
 
-.height100{
+.height100 {
     display: flex;
     max-height: 100vh;
     flex-direction: column;

@@ -1,21 +1,78 @@
-.bodySettings{
+.bodySettings {
     display: flex;
     justify-content: center;
     min-height: 100vh;
     width: 100%;
+    position: relative;
 }
-.settingsBG1{
+
+/* Sidebar and Burger */
+.settingsBG1 {
+    display: flex;
     padding: 60px 10px 60px 100px;
     min-width: 250px;
     overflow-y: scroll;
+    background: #1C1B1F;
+    transition: all 0.3s ease;
 }
-.settingsBG2{
+
+.settingsBG2 {
     width: 100%;
 }
-.settingsBG2 img{
+
+.settingsBG2 img {
     width: 50px;
 }
-.settingsBG2, .settingsBG3{
+
+.settingsBG2,
+.settingsBG3 {
     background: #343337;
     padding: 60px 10px 0 10px;
+}
+
+/* Hide sidebar by default in mobile */
+@media (max-width: 1000px){
+    .settingsBG1 {
+        position: absolute;
+        top: 0;
+        left: -300px;
+        width: 250px;
+        height: 100vh;
+        transition: all 0.3s ease;
+    }
+
+    /* Show sidebar when open */
+    .settingsBG1.open {
+        left: 0;
+    }
+
+    /* Hide sidebar when closed */
+    .settingsBG1.close {
+        left: -300px;
+    }
+
+    /* Burger icon */
+    .burger {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 30px;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        color: white;
+    }
+}
+
+/* Always show sidebar on larger screens */
+@media (min-width: 1001px) {
+    .settingsBG1 {
+        position: relative;
+        left: 0;
+    }
+
+    .burger {
+        display: none;
+    }
 }

@@ -1,14 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './SettingsLayout.css';
 import SideBar from './SideBar/SideBar';
 
 const SettingsLayout = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(false); // Control sidebar visibility
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000); // Track if it's a mobile view
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen); // Toggle sidebar open/close
+  };
+
+  // Update mobile state on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+      if (window.innerWidth > 1000) {
+        setIsOpen(true); // Always show the sidebar on larger screens
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup event listener on unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className='bodySettings'>
-      <div className='settingsBG1'>
+      <div className={`settingsBG1 ${isMobile && !isOpen ? 'close' : 'open'}`}>
         <SideBar />
       </div>
+      {isMobile && (
+        <button className="burger" onClick={toggleMenu}>
+          &#9776;
+        </button>
+      )}
       <div className='settingsBG2'>
         {children}
       </div>
