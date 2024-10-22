@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const Header = () => {
   const { isAuthenticated, logout } = useContext(AuthContext);
@@ -14,7 +14,6 @@ const Header = () => {
     <header>
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
           {isAuthenticated ? (
             <>
               <li><Link to="/profile">Profile</Link></li>

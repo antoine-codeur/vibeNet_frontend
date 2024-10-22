@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthContext';
+import { useNavigate, Link } from 'react-router-dom';
+import apiFetch from '../../../utils/apiFetch';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
-  const navigate = useNavigate(); // Initialisation de useNavigate
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
@@ -15,28 +16,23 @@ const Login = () => {
     setErrors({});
     setSuccessMessage('');
 
-    const response = await fetch('http://127.0.0.1:8000/api/v1/login', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await apiFetch('/login', 'POST', { email, password });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      setErrors({ email: [data.data.error] });
+    // Ensure token and success status are present
+    if (response.success && response.data.data.token) {
+      setSuccessMessage('Login successful');
+      
+      localStorage.setItem('token', response.data.data.token);
+      login(response.data.data.token);
+      navigate('/home');
     } else {
-      setSuccessMessage(data.message);
-      login(data.data.token);
-      navigate('/'); // Redirection vers la page d'accueil
+      // Error handling
+      setErrors({ email: [response.error || 'Login failed'] });
     }
   };
 
   return (
-    <div>
+    <>
       <h2>Login</h2>
       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
       <form onSubmit={handleSubmit}>
@@ -58,7 +54,8 @@ const Login = () => {
       </form>
 
       {errors.email && <p style={{ color: 'red' }}>{errors.email.join(', ')}</p>}
-    </div>
+      <p>Don't have an account? <Link to="/register">Register here</Link></p>
+    </>
   );
 };
 

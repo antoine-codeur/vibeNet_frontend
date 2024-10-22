@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthContext';
+import { useNavigate, Link } from 'react-router-dom';
+import apiFetch from '../../../utils/apiFetch';
 
 const Register = () => {
   const { login } = useContext(AuthContext);
-  const navigate = useNavigate(); // Initialisation de useNavigate
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,28 +18,28 @@ const Register = () => {
     setErrors({});
     setSuccessMessage('');
 
-    const response = await fetch('http://127.0.0.1:8000/api/v1/register', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, email, password, password_confirmation: passwordConfirmation }),
+    // Make the API request
+    const response = await apiFetch('/register', 'POST', {
+      name,
+      email,
+      password,
+      password_confirmation: passwordConfirmation,
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      setErrors(data.data);
+    if (response.success && response.data.data.token) {
+      setSuccessMessage('Register successful');
+      
+      localStorage.setItem('token', response.data.data.token);
+      login(response.data.data.token);
+      navigate('/home');
     } else {
-      setSuccessMessage(data.message);
-      login(data.data.token);
-      navigate('/'); // Redirection vers la page d'accueil
+      // Error handling
+      setErrors({ email: [response.error || 'Register failed'] });
     }
   };
 
   return (
-    <div>
+    <>
       <h2>Register</h2>
       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
       <form onSubmit={handleSubmit}>
@@ -76,7 +77,9 @@ const Register = () => {
       {errors.email && <p style={{ color: 'red' }}>{errors.email.join(', ')}</p>}
       {errors.name && <p style={{ color: 'red' }}>{errors.name.join(', ')}</p>}
       {errors.password && <p style={{ color: 'red' }}>{errors.password.join(', ')}</p>}
-    </div>
+
+      <p>Already have an account? <Link to="/login">Login here</Link></p>
+    </>
   );
 };
 
